@@ -26,7 +26,7 @@ else
 // HttpClient for MVC to call the API (Bypasses dev cert issues locally)
 builder.Services.AddHttpClient("RaceDayApi", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7018/"); // Ensure this matches your launchSettings
+    client.BaseAddress = new Uri("https://localhost:7018/"); 
 })
 .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {
