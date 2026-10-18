@@ -1,4 +1,5 @@
- RaceDay - Event Management System
+**RaceDay - Event Management System
+** 
 RaceDay is a comprehensive, full-stack ASP.NET Core application designed to manage running, cycling, and walking events. It features a robust Web API backend and a modern, responsive MVC front-end, allowing Organisers to create events and Participants to enrol and track their results.
 
 This project was developed as part of the PROG6212 Portfolio of Evidence (POE).
