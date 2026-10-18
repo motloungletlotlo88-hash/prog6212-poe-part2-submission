@@ -1,0 +1,41 @@
+﻿@model RaceDay.DTOs.ResultDto
+@{ ViewData["Title"] = "Capture Result"; }
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h4>Capture Participant Result</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="CaptureResult" method="post">
+                    <input type="hidden" name="enrolmentId" value="@ViewBag.EnrolmentId" />
+                    
+                    <div class="alert alert-info">
+                        Participant: <strong>@ViewBag.ParticipantName</strong>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="FinishTime" class="form-label">Finish Time</label>
+                        <input asp-for="FinishTime" type="time" step="1" class="form-control" required />
+                        <small class="text-muted">Format: HH:MM:SS</small>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Position" class="form-label">Finishing Position</label>
+                        <input asp-for="Position" type="number" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Status" class="form-label">Status</label>
+                        <select asp-for="Status" class="form-select">
+                            <option value="Finished">Finished</option>
+                            <option value="DNF">Did Not Finish (DNF)</option>
+                            <option value="DNS">Did Not Start (DNS)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Result</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
