@@ -1,29 +1,27 @@
-name: Build RaceDay
+name: Validate Repository Structure
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [main, master]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [main, master]
+  workflow_dispatch:
+
+concurrency:
+  group: structure-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  validate-structure:
+    name: Validate structure
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '10.0.x'
-        # Crucial for .NET 10 while it is in preview
-        dotnet-quality: 'preview'
-
-    - name: Restore dependencies (Main Project Only)
-      # Notice we point directly to the RaceDay project file
-      run: dotnet restore RaceDay/RaceDay.csproj
-
-    - name: Build (Main Project Only)
-      run: dotnet build RaceDay/RaceDay.csproj --no-restore --configuration Release
+      - name: Validate repository layout
+        run: bash scripts/validate-structure.sh
